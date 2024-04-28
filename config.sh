@@ -51,12 +51,12 @@ echo -e "${YELLOW}Installing dotfiles...${NC}\n${RED}DO NOT REBOOT${NC}"
 # Copy configurations
 echo -e "${YELLOW}Copying configurations...${NC}"
 cd $SCRIPT_DIR
-cp -rf $SCRIPT_DIR/qtile/ $HOME/dotfiles
-cp -rf $SCRIPT_DIR/waybar/ $HOME/dotfiles
-cp -f $SCRIPT_DIR/border-1-reverse-less-gaps.conf $HOME/dotfiles/hypr/conf/windows
-cp -f $SCRIPT_DIR/rounding-shadow-full-opacity.conf $HOME/dotfiles/hypr/conf/decorations
+cp -rf qtile/ $HOME/dotfiles
+cp -rf waybar/ $HOME/dotfiles
+cp -f border-1-reverse-less-gaps.conf $HOME/dotfiles/hypr/conf/windows
+cp -f rounding-shadow-full-opacity.conf $HOME/dotfiles/hypr/conf/decorations
 
 # Installing fonts
-yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+yay -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
 
 echo -e "${GREEN}Setup complete${NC}\n${YELLOW}Reboot now${NC}"
