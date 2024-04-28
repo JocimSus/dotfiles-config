@@ -11,6 +11,29 @@ NC='\033[0m'
 echo -e "${YELLOW}Updating system...${NC}"
 sudo pacman -Syu
 
+# Configure pacman
+cd $SCRIPT_DIR
+sudo cp -f pacman.conf /etc/pacman.conf
+
+# Install GRUB theme
+cd $SCRIPT_DIR
+
+echo -e "${YELLOW}Copying default grub config...${NC}"
+sudo cp -f grub /etc/default/grub
+
+echo -e "${YELLOW}Cloning GRUB theme repository...${NC}"
+git clone https://github.com/sandesh236/sleek--themes.git
+cd sleek--themes/Sleek\ theme-dark
+
+echo -e "${YELLOW}Installing GRUB theme...${NC}"
+chmod +x install.sh
+sudo ./install.sh
+
+# Detect Windows boot
+sudo pacman -S os-prober
+echo -e "${YELLOW}Make GRUB config...${NC}"
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
 # Create Downloads folder
 echo -e "${YELLOW}Creating Downloads folder...${NC}"
 mkdir $HOME/Downloads/
@@ -33,4 +56,7 @@ cp -rf $SCRIPT_DIR/waybar/ $HOME/dotfiles
 cp -f $SCRIPT_DIR/border-1-reverse-less-gaps.conf $HOME/dotfiles/hypr/conf/windows
 cp -f $SCRIPT_DIR/rounding-shadow-full-opacity.conf $HOME/dotfiles/hypr/conf/decorations
 
-echo -e "${GREEN}Setup complete.${NC}"
+# Installing fonts
+yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+
+echo -e "${GREEN}Setup complete${NC}\n${YELLOW}Reboot now${NC}"
