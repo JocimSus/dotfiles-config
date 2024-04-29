@@ -57,6 +57,11 @@ cp -f border-1-reverse-less-gaps.conf $HOME/dotfiles/hypr/conf/windows
 cp -f rounding-shadow-full-opacity.conf $HOME/dotfiles/hypr/conf/decorations
 
 # Installing fonts
-yay -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+echo -e "${YELLOW}Installing fonts...${NC}"
+yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+echo -e "${YELLOW}Installing apps...${NC}"
+yay -Syu vesktop-bin
+echo -e "${YELLOW}Remove unwanted apps...${NC}"
+yay -R dolphin kitty pacseek
 
 echo -e "${GREEN}Setup complete${NC}\n${YELLOW}Reboot now${NC}"
